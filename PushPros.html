@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- This is the File Created By Varshanth Vemugunta for PushPros Dev Quiz-->
+<html> 
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+    
+        <button  type="button" class="btn btn-primary"  id="btn">Load Data</button>
+        
+        <div class = "container">
+                <table class="table" id="tb">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                </table>
+
+        </div>
+    </body>
+    <script>
+            $(document).ready(function()
+            {
+                $("#btn").click(function(){
+                    const thclr = document.querySelector("#tb > thead");
+                    while(thclr.firstChild){
+                        thclr.removeChild(thclr.firstChild);
+                    }
+                    const clr = document.querySelector("#tb > tbody");
+                    while(clr.firstChild){
+                        clr.removeChild(clr.firstChild);
+                    }
+
+                    $("#tb").append("<tr>"+
+                        "<th>"+"id"+"</th>"+
+                        "<th>"+"name"+"</th>"+
+                        "<th>"+"url"+"</th>"+
+                      "</tr>");
+
+                    $.getJSON("https://aimtell.com/files/sites.json",function(data)
+                    {
+                       data.sites.forEach(function(jsondata) {
+                             
+                                $("#tb").append("<tr>"+"<td>"+jsondata.id+"</td>"+
+                                    "<td>"+jsondata.name+"</td>"+"<td>"+jsondata.url+"</td>"+"</tr>" );
+                            
+                        });
+                    })
+                });
+            });
+
+    </script>
+</html>
